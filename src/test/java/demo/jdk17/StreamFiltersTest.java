@@ -9,17 +9,24 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 class StreamFiltersTest {
 
 	@Test
 	void testFilters() {
 		// Sample collection (List of Person objects)
-		List<Person> persons = Arrays.asList(new Person("John", 25, Gender.MALE),
-				new Person("Alice", 30, Gender.FEMALE), new Person("Bob", 22, Gender.MALE),
-				new Person("Eve", 28, Gender.FEMALE));
+		List<PersonJDK17> persons = Arrays.asList(new PersonJDK17("John", 25, Gender.MALE),
+				new PersonJDK17("Alice", 30, Gender.FEMALE), new PersonJDK17("Bob", 22, Gender.MALE),
+				new PersonJDK17("Eve", 28, Gender.FEMALE));
 
 		// Using Java Streams filter with a complex predicate
-		List<Person> filteredPersons = persons.stream()
+		List<PersonJDK17> filteredPersons = persons.stream()
 				.filter(person -> person.getAge() > 25 && person.getGender() == Gender.FEMALE)
 				.collect(Collectors.toList());
 		
@@ -59,33 +66,16 @@ class StreamFiltersTest {
 
 }
 
-class Person {
-	private String name;
-	private int age;
-	private Gender gender;
-
-	public Person(String name, int age, Gender gender) {
-		this.name = name;
-		this.age = age;
-		this.gender = gender;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public Gender getGender() {
-		return gender;
-	}
-
-	@Override
-	public String toString() {
-		return "Person{" + "name='" + name + '\'' + ", age=" + age + ", gender=" + gender + '}';
-	}
+@Data
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@ToString
+class PersonJDK17 {
+	String name;
+	int age;
+	Gender gender;
 }
 
 enum Gender {

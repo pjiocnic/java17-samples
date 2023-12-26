@@ -31,14 +31,14 @@ class ApacheCollectionsTest {
 	void testFiltersForComplexCollection() {
 		
         // Sample collection (List of Person objects)
-        List<Person> persons = new ArrayList<>();
-        persons.add(new Person("John", 25, Gender.MALE));
-        persons.add(new Person("Alice", 30, Gender.FEMALE));
-        persons.add(new Person("Bob", 22, Gender.MALE));
-        persons.add(new Person("Eve", 28, Gender.FEMALE));
+        List<PersonJDK8> persons = new ArrayList<>();
+        persons.add(new PersonJDK8("John", 25, Gender.MALE));
+        persons.add(new PersonJDK8("Alice", 30, Gender.FEMALE));
+        persons.add(new PersonJDK8("Bob", 22, Gender.MALE));
+        persons.add(new PersonJDK8("Eve", 28, Gender.FEMALE));
 
         // Define a complex predicate using Apache Commons Collections Predicate
-        Predicate<Person> complexPredicate = person -> person.getAge() > 25 && person.getGender() == Gender.FEMALE;
+        Predicate<PersonJDK8> complexPredicate = person -> person.getAge() > 25 && person.getGender() == Gender.FEMALE;
 
         // Use CollectionUtils.filter to apply the predicate
         CollectionUtils.filter(persons, complexPredicate);
@@ -48,12 +48,12 @@ class ApacheCollectionsTest {
 
 }
 
-class Person {
+class PersonJDK8 {
 	private String name;
 	private int age;
 	private Gender gender;
 
-	public Person(String name, int age, Gender gender) {
+	public PersonJDK8(String name, int age, Gender gender) {
 		this.name = name;
 		this.age = age;
 		this.gender = gender;
