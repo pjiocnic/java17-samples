@@ -17,7 +17,7 @@ class NullSafeNavigationTest {
         person.addr = addr;
         
         
-		String street = person?.addr?.street;
+//		String street = person?.addr?.street;
 	}
 
 }

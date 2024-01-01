@@ -32,8 +32,25 @@ class ConvertToUTCTest {
         System.out.println("Local Datetime: " + formattedESTDateTime);
         System.out.println("UTC Datetime: " + formattedUTCDateTime);
 
-
     }	
+	
+	
+	@Test
+	void testETToUTC() {
+		
+		// Eastern
+		ZonedDateTime etZoned = ZonedDateTime.now();
+		LocalDateTime etLocal = etZoned.toLocalDateTime();
+		System.out.println("etZoned: " + etZoned);
+		System.out.println("etLocal: " + etLocal);
+
+		// UTC
+		ZonedDateTime etInUTC = etZoned.withZoneSameInstant(ZoneId.of("UTC"));
+		LocalDateTime etInUTCLocal = etZoned.toLocalDateTime();
+		System.out.println("etInUTC: " + etInUTC);
+		System.out.println("etInUTCLocal: " + etInUTCLocal);
+
+	}
 	
 	@Test
 	void testStringToTimestamp() {
