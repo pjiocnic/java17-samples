@@ -10,6 +10,20 @@ import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.Test;
 
 class ConvertToUTCTest {
+	
+	@Test
+	void testInstant() {
+		Instant instant = Instant.now();  // Capture the current moment in UTC.
+		System.out.println("instant: " + instant);	
+		
+        // Convert Instant to ET's LocalDateTime
+        LocalDateTime localDateTime = instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
+		System.out.println("localDateTime: " + localDateTime);	
+		
+        // Convert Instant to UTC's LocalDateTime
+		LocalDateTime localDateTime2 = instant.atZone(ZoneId.of("UTC")).toLocalDateTime();		
+		System.out.println("localDateTime2: " + localDateTime2);	
+	}
 
 	@Test
 	void testLocalToUtc() {
