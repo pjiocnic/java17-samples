@@ -4,8 +4,10 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +25,16 @@ class ConvertToUTCTest {
         // Convert Instant to UTC's LocalDateTime
 		LocalDateTime localDateTime2 = instant.atZone(ZoneId.of("UTC")).toLocalDateTime();		
 		System.out.println("localDateTime2: " + localDateTime2);	
+	}
+	
+	@Test
+	void testMAXDttm() {
+		ZonedDateTime zdt = ZonedDateTime.of(9999, 12, 31, 0, 0, 0, 0, ZoneOffset.UTC);
+		Date endDt = Date.from(zdt.toInstant());
+		System.out.println("endDt: " + endDt);
+		
+		LocalDateTime ldt = zdt.toLocalDateTime();
+		System.out.println("ldt: " + ldt);
 	}
 
 	@Test
@@ -45,7 +57,6 @@ class ConvertToUTCTest {
         // Print the converted UTC datetime
         System.out.println("Local Datetime: " + formattedESTDateTime);
         System.out.println("UTC Datetime: " + formattedUTCDateTime);
-
     }	
 	
 	
